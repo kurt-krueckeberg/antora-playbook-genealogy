@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 rm -rf public
+cd ../antora-genealogy
+git pull
+cd -
+cd ../antora-immanuel
+git pull
+cd -
 npx antora antora-playbook.yml 
 cp  fonts/* public/_/font/
 /usr/bin/rm -rf /var/www/krueckeberg.org/docs/*
