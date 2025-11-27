@@ -16,10 +16,10 @@ rm -rf public
 
 cd ../antora-genealogy
 git pull
-cd - > /dev/null
+cd - 
 cd ../antora-immanuel
 git pull
-cd - > /dev/null
+cd - 
 
 # --- 3. Long-Running Task: Antora Build ---
 echo "Running Antora build (you can work while this runs)..."
