@@ -104,8 +104,8 @@ Environment="PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/home/kurt/.local
 ExecStart=/home/kurt/antora-playbook-genealogy/vps-build
 
 # Log to a permanent file
-StandardOutput=append:/home/kurt/antora-build.log
-StandardError=append:/home/kurt/antora-build.log
+StandardOutput=journal
+StandardError=journal
 ----
 
 Save → exit.
