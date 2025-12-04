@@ -1,39 +1,53 @@
 #!/usr/bin/env bash
 set -e
 
-# --- 2. Build Preparation (Quick Steps) ---
-echo "Starting Antora build preparation..."
-rm -rf public
+echo "=== Antora Build Started: $(date) ==="
 
+#
+# 1. CLEAN PREVIOUS BUILD
+#
+echo "Cleaning previous build..."
+rm -rf /home/kurt/antora-playbook-genealogy/public
+
+
+#
+# 2. GIT PULL FROM BOTH REPOS
+#
+echo "Updating antora-genealogy repo..."
 cd /home/kurt/antora-genealogy
 git pull
 
+echo "Updating antora-immanuel repo..."
 cd /home/kurt/antora-immanuel
 git pull
 
+
+#
+# 3. RUN ANTORA BUILD
+#
+echo "Running Antora build..."
 cd /home/kurt/antora-playbook-genealogy
 
-# --- 3. Long-Running Task: Antora Build ---
-echo "Running Antora build (you can work while this runs)..."
-node --max-old-space-size=2560 `which npx` antora antora-playbook.yml
+# Using npx directly (cleaner, safer, systemd-friendly)
+npx --max-old-space-size=2560 antora antora-playbook.yml
 
-# Check if Antora succeeded before deployment
-if [ $? -ne 0 ]; then
-    echo "Antora build failed. Deployment aborted."
-    exit 1
-fi
 
-# Copy fonts (non-sudo operation)
-cp fonts/* public/_/font/
+#
+# 4. COPY FONTS
+#
+echo "Copying fonts..."
+cp /home/kurt/antora-playbook-genealogy/fonts/* \
+   /home/kurt/antora-playbook-genealogy/public/_/font/
 
-# --- 4. Deployment (Runs Silently Now) ---
-echo "Deployment started (password already authenticated)..."
-# These commands will run silently because sudo -v authenticated you
-# and reset the timeout just before the Antora build started.
 
-sudo /usr/bin/rm -rf /var/www/krueckeberg.org/docs/*
-sudo /usr/bin/cp -r public /var/www/krueckeberg.org/docs
-sudo /usr/bin/chown -R root:www-data /var/www/krueckeberg.org/docs
-sudo /usr/bin/chmod -R g+w /var/www/krueckeberg.org/docs
+#
+# 5. DEPLOY TO WEB DIRECTORY
+# (kurt must own this directory — no sudo in automated scripts)
+#
+echo "Deploying to /var/www/krueckeberg.org/docs..."
+rm -rf /var/www/krueckeberg.org/docs/*
+cp -r /home/kurt/antora-playbook-genealogy/public \
+      /var/www/krueckeberg.org/docs
 
-echo "Build and deployment complete."
+echo "=== Antora Build Completed: $(date) ==="
+
