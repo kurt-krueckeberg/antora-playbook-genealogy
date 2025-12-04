@@ -1,17 +1,13 @@
 #!/usr/bin/env bash
 
-# Detect whether we are running interactively (manual) or non-interactively (cron)
-if [ -t 1 ]; then
-    # Running manually — safe to prompt for password
-    echo "Please enter your sudo password now. The Antora build will run immediately after."
-    sudo -v
-    if [ $? -ne 0 ]; then
-        echo "Sudo authentication failed. Exiting script."
-        exit 1
-    fi
-else
-    # Running in cron — do NOT prompt; expect NOPASSWD sudoers config
-    echo "Running in non-interactive mode; skipping sudo password prompt."
+# --- 1. Immediate Action: Get Password Authentication Out of the Way ---
+echo "Please enter your sudo password now. The Antora build will run immediately after."
+sudo -v # <--- THIS prompts for the password immediately.
+
+# Check if authentication succeeded (optional but good practice)
+if [ $? -ne 0 ]; then
+    echo "Sudo authentication failed. Exiting script."
+    exit 1
 fi
 
 # --- 2. Build Preparation (Quick Steps) ---
