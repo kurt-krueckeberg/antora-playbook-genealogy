@@ -1,25 +1,17 @@
 #!/usr/bin/env bash
-
-# --- 1. Immediate Action: Get Password Authentication Out of the Way ---
-echo "Please enter your sudo password now. The Antora build will run immediately after."
-sudo -v # <--- THIS prompts for the password immediately.
-
-# Check if authentication succeeded (optional but good practice)
-if [ $? -ne 0 ]; then
-    echo "Sudo authentication failed. Exiting script."
-    exit 1
-fi
+set -e
 
 # --- 2. Build Preparation (Quick Steps) ---
 echo "Starting Antora build preparation..."
 rm -rf public
 
-cd ../antora-genealogy
+cd /home/kurt/antora-genealogy
 git pull
-cd - 
-cd ../antora-immanuel
+
+cd /home/kurt/antora-immanuel
 git pull
-cd - 
+
+cd /home/kurt/antora-playbook-genealogy
 
 # --- 3. Long-Running Task: Antora Build ---
 echo "Running Antora build (you can work while this runs)..."
