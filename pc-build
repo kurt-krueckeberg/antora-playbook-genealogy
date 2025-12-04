@@ -1,10 +1,40 @@
 #!/usr/bin/env bash
-rm -rf public
-cd ../antora-genealogy
+set -e
+
+echo "=== Antora Build Started: $(date) ==="
+
+#
+# 1. CLEAN PREVIOUS BUILD
+#
+echo "Cleaning previous build..."
+rm -rf /home/kurt/antora-playbook-genealogy/public
+
+
+#
+# 2. GIT PULL FROM BOTH REPOS
+#
+echo "Updating antora-genealogy repo..."
+cd /home/kurt/antora-genealogy
 git pull
-cd -
-cd ../antora-immanuel
+
+echo "Updating antora-immanuel repo..."
+cd /home/kurt/antora-immanuel
 git pull
-cd -
-npx antora antora-playbook.yml 
-cp  fonts/* public/_/font/
+
+
+#
+# 3. RUN ANTORA BUILD
+#
+echo "Running Antora build..."
+cd /home/kurt/antora-playbook-genealogy
+
+# Using npx directly (cleaner, safer, systemd-friendly)
+npx --max-old-space-size=2560 antora antora-playbook.yml
+
+
+#
+# 4. COPY FONTS
+#
+echo "Copying fonts..."
+cp /home/kurt/antora-playbook-genealogy/fonts/* \
+   /home/kurt/antora-playbook-genealogy/public/_/font/
