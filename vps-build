@@ -29,7 +29,7 @@ echo "Running Antora build..."
 cd /home/kurt/antora-playbook-genealogy
 
 # Using npx directly (cleaner, safer, systemd-friendly)
-npx --max-old-space-size=2560 antora antora-playbook.yml
+npx --max-old-space-size=4096 antora antora-playbook.yml
 
 
 #
