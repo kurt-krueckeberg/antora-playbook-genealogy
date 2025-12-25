@@ -21,6 +21,9 @@ echo "Updating antora-immanuel repo..."
 cd /home/kurt/antora-immanuel
 git pull
 
+echo "Updating antora-nla repo..."
+cd /home/kurt/antora-nla
+git pull
 
 #
 # 3. RUN ANTORA BUILD
