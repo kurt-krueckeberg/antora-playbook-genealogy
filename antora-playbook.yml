@@ -17,12 +17,6 @@ content:
       # setting edit_url to false disables the Edit this Page link for any page that originates from this repository
       # the same thing can be achieved by adding empty credentials (i.e., @) in front of the domain in the URL
       edit_url: false
-    - url: ../antora-nla
-      branches: HEAD
-      # start_path: docs
-      # setting edit_url to false disables the Edit this Page link for any page that originates from this repository
-      # the same thing can be achieved by adding empty credentials (i.e., @) in front of the domain in the URL
-      edit_url: false
 asciidoc:
   attributes:
     experimental: ""
