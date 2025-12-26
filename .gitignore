@@ -4,6 +4,7 @@ build/
 .vscode/
 _/
 node_modules/
+public-3compo/
 public/
 latest/
 .*.swp

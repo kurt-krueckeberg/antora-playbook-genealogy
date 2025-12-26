@@ -32,8 +32,9 @@ cp -u /home/kurt/play/fonts/* \
 #
 # 5. DEPLOY TO VPS
 #
-rsync -avz --delete \
+#
+rsync -rzv --progress --delete \
   /home/kurt/play/public-3compo/ \
-  kurt@hostwinds:/var/www/krueckeberg.org/docs/
+  kurt@hostwinds:/var/www/krueckeberg.org/docs/public/
 
 echo "=== Antora Build Completed: $(date) ==="
