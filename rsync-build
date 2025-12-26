@@ -7,43 +7,32 @@ echo "=== Antora Build Started: $(date) ==="
 # 1. CLEAN PREVIOUS BUILD
 #
 echo "Cleaning previous build..."
-rm -rf /home/kurt/antora-playbook-genealogy/public
-
+rm -rf /home/kurt/antora-3compo-genealogy/public
 
 #
-# 2. GIT PULL FROM BOTH REPOS
+# 2. UPDATE CONTENT REPOS
 #
-echo "Updating antora-genealogy repo..."
-cd /home/kurt/antora-genealogy
-git pull
+cd /home/kurt/antora-genealogy && git pull
+cd /home/kurt/antora-immanuel && git pull
+cd /home/kurt/antora-nla && git pull
 
-echo "Updating antora-immanuel repo..."
-cd /home/kurt/antora-immanuel
-git pull
-#
 #
 # 3. RUN ANTORA BUILD
 #
-echo "Running Antora build..."
-cd /home/kurt/antora-playbook-genealogy
-
-# Using npx directly (cleaner, safer, systemd-friendly)
-npx antora antora-playbook.yml
+cd /home/kurt/antora-3compo-genealogy
+npx antora antora-3compo-playbook.yml
 
 #
 # 4. COPY FONTS
 #
-echo "Copying fonts..."
-cp /home/kurt/antora-playbook-genealogy/fonts/* \
-   /home/kurt/antora-playbook-genealogy/public/_/font/
+cp /home/kurt/antora-3compo-genealogy/fonts/* \
+   /home/kurt/antora-3compo-genealogy/public/_/font/
+
+#
+# 5. DEPLOY TO VPS
+#
 rsync -avz --delete \
-  /home/kurt/antora-playbook-genealogy/public/ \
+  /home/kurt/antora-3compo-genealogy/public/ \
   kurt@hostwinds:/var/www/krueckeberg.org/docs/
-#
-# 5. DEPLOY TO WEB DIRECTORY
-# (kurt must own this directory — no sudo in automated scripts)
-#
-echo "Deploying to /var/www/krueckeberg.org/docs..."
 
 echo "=== Antora Build Completed: $(date) ==="
-
