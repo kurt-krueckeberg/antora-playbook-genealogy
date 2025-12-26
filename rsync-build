@@ -7,7 +7,7 @@ echo "=== Antora Build Started: $(date) ==="
 # 1. CLEAN PREVIOUS BUILD
 #
 echo "Cleaning previous build..."
-rm -rf /home/kurt/antora-3compo-genealogy/public
+rm -rf /home/kurt/play/public-3compo
 
 #
 # 2. UPDATE CONTENT REPOS
@@ -17,22 +17,23 @@ cd /home/kurt/antora-immanuel && git pull
 cd /home/kurt/antora-nla && git pull
 
 #
-# 3. RUN ANTORA BUILD
+# 3. RUN ANTORA BUILD (3-component playbook)
 #
-cd /home/kurt/antora-3compo-genealogy
+cd /home/kurt/play
 npx antora antora-3compo-playbook.yml
 
 #
 # 4. COPY FONTS
 #
-cp /home/kurt/antora-3compo-genealogy/fonts/* \
-   /home/kurt/antora-3compo-genealogy/public/_/font/
+mkdir -p /home/kurt/play/public-3compo/_/font
+cp -u /home/kurt/play/fonts/* \
+      /home/kurt/play/public-3compo/_/font/
 
 #
 # 5. DEPLOY TO VPS
 #
 rsync -avz --delete \
-  /home/kurt/antora-3compo-genealogy/public/ \
+  /home/kurt/play/public-3compo/ \
   kurt@hostwinds:/var/www/krueckeberg.org/docs/
 
 echo "=== Antora Build Completed: $(date) ==="
