@@ -33,7 +33,7 @@ mkdir -p /home/kurt/play/public-3compo/_/font
 # 5. DEPLOY TO VPS
 #
 #
-rsync -rz --checksum --delete \
+rsync -rzv --checksum --delete \
   /home/kurt/play/public-3compo/ \
   kurt@hostwinds:/var/www/krueckeberg.org/docs/public/
 
