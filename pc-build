@@ -7,7 +7,7 @@ echo "=== Antora Build Started: $(date) ==="
 # 1. CLEAN PREVIOUS BUILD
 #
 echo "Cleaning previous build..."
-rm -rf /home/kurt/antora-playbook-genealogy/public
+rm -rf /home/kurt/antora-playbook-genealogy/public-3compo
 
 #
 # 3. RUN ANTORA BUILD
