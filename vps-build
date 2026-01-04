@@ -9,7 +9,6 @@ echo "=== Antora Build Started: $(date) ==="
 echo "Cleaning previous build..."
 rm -rf /home/kurt/antora-playbook-genealogy/public
 
-
 #
 # 2. GIT PULL FROM BOTH REPOS
 #
@@ -20,6 +19,11 @@ git pull
 echo "Updating antora-immanuel repo..."
 cd /home/kurt/antora-immanuel
 git pull
+
+echo "Updating antora-nla repo..."
+cd /home/kurt/antora-nla
+git pull
+
 #
 #
 # 3. RUN ANTORA BUILD
@@ -28,7 +32,7 @@ echo "Running Antora build..."
 cd /home/kurt/antora-playbook-genealogy
 
 # Using npx directly (cleaner, safer, systemd-friendly)
-npx --max-old-space-size=4096 antora antora-playbook.yml
+npx --max-old-space-size=4096 antora antora-3compo-playbook.yml
 
 #
 # 4. COPY FONTS
