@@ -25,8 +25,8 @@ npx antora antora-3compo-playbook.yml
 #
 # 4. COPY FONTS
 #
-mkdir -p /home/kurt/play/public-3compo/_/font
-#cp -u /home/kurt/play/fonts/* \
+# mkdir -p /home/kurt/play/public-3compo/_/font
+# cp -u /home/kurt/play/fonts/* \
 #      /home/kurt/play/public-3compo/_/font/
 
 #
