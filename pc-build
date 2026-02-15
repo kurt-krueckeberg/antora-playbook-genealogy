@@ -21,6 +21,6 @@ npx antora antora-3compo-playbook.yml
 #
 # 4. COPY FONTS
 #
-echo "Copying fonts..."
-cp /home/kurt/antora-playbook-genealogy/fonts/* \
-   /home/kurt/antora-playbook-genealogy/public/_/font/
+# echo "Copying fonts..."
+# cp /home/kurt/antora-playbook-genealogy/fonts/* \
+#   /home/kurt/antora-playbook-genealogy/public/_/font/
