@@ -31,6 +31,9 @@ git pull
 echo "Running Antora build..."
 cd /home/kurt/antora-playbook-genealogy
 
+# FIX: prevent intermittent missing component
+rm -rf .cache/antora
+
 # Using npx directly (cleaner, safer, systemd-friendly)
 npx --max-old-space-size=4096 antora antora-3compo-playbook.yml
 
