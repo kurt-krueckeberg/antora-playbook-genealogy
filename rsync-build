@@ -28,6 +28,11 @@ npx antora antora-3compo-playbook.yml
 # mkdir -p /home/kurt/play/public-3compo/_/font
 # cp -u /home/kurt/play/fonts/* \
 #      /home/kurt/play/public-3compo/_/font/
+#
+if [ ! -d "public-3compo/nla" ]; then
+  echo "ERROR: nla missing from build. Aborting deploy."
+  exit 1
+fi
 
 #
 # 5. DEPLOY TO VPS
