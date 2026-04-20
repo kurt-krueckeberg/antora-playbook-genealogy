@@ -35,7 +35,7 @@ cd /home/kurt/antora-playbook-genealogy
 rm -rf .cache/antora
 
 # Using npx directly (cleaner, safer, systemd-friendly)
-npx --max-old-space-size=4096 antora antora-3compo-playbook.yml
+npx antora antora-3compo-playbook.yml
 
 #
 # 4. COPY FONTS
