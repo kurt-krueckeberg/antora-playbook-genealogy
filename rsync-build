@@ -13,7 +13,7 @@ rm -rf /home/kurt/play/public-3compo
 # 2. UPDATE CONTENT REPOS
 #
 cd /home/kurt/antora-genealogy && git pull
-cd /home/kurt/antora-immanuel && git pull
+# cd /home/kurt/antora-immanuel && git pull
 cd /home/kurt/antora-nla && git pull
 
 #
